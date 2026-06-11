@@ -1,0 +1,62 @@
+[
+  {
+    "id": "centro-fachada-01",
+    "tier": "hero",
+    "src": "/img/centro-fachada-01.webp",
+    "width": 1600,
+    "height": 1200,
+    "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAwAgCdASoQAAwAA8BgJZwAD5LOIiTRY9E5AAD2NNGQELTG26AxG7E7FL7nVkWcb7vShOpEDdTlgd3fFwgdQaSoaSDDi3Y316GkSdDRQ7slbAAA",
+    "alt": "Fachada del Avenida en la calle Toledo: arcos rotulados «Cervecería Avenida 15 · Raciones» y la terraza montada",
+    "fuente": "Google Maps del propio local (provisional, D-013)"
+  },
+  {
+    "id": "centro-plato-01",
+    "tier": "grid",
+    "src": "/img/centro-plato-01.webp",
+    "width": 1600,
+    "height": 900,
+    "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAwAgCdASoQAAkAA8BgJbACdAYtBzD3aoRooAD+Sb/z1B4qRsUB21dH9lfqrQIiF3xgsq4i/NUQi8qs/w4+dS9j9EkiQZgdL19Avtev0UPDuD7Zt2ycs6doKKJta1sN4ZywWjqsqLBYys4AAAA=",
+    "alt": "Sandwich mixto plancha con patatas fritas caseras, servido en el Avenida de la calle Toledo",
+    "fuente": "Google Maps del propio local (provisional, D-013)"
+  },
+  {
+    "id": "centro-plato-02",
+    "tier": "grid",
+    "src": "/img/centro-plato-02.webp",
+    "width": 1600,
+    "height": 2133,
+    "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAwBACdASoQABUAPwForE6rJaQiMAgBYCAJbAC/OB6yFKrjy/MC496v9mAA/oKkT3fyAgY235z6/133wDk1d17A7QwblE4zIIFJJzjuQ7HokDjhAzRTcb4Al2UhfJECEFpAhbcDvjJyl491mUwNaHMXVjR9DiUmFSp86yqutuSO8roaPz4AAA==",
+    "alt": "Plato de judías estofadas con su vino tinto, cocina casera del menú del día",
+    "fuente": "Google Maps del propio local (provisional, D-013)"
+  },
+  {
+    "id": "lavadero-fachada-01",
+    "tier": "hero",
+    "src": "/img/lavadero-fachada-01.webp",
+    "width": 1600,
+    "height": 901,
+    "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwAgCdASoQAAkAA8BgJbACsAYt9ne+rRIAQAD9pgpmw53Mq5kE3ZLMx1OTH4XQk4pAKVQPkrzU7S2WqBi5zsGHuGzFThOmb3Fn8BJasO/LHFHb1Y0IhG/08tdboBeqcz8Ke0ggAAA=",
+    "alt": "Fachada blanca y roja del Avenida by Tapas en la zona del Lavadero, con su rótulo y la entrada con toldo",
+    "fuente": "Google Maps del propio local (provisional, D-013)"
+  },
+  {
+    "id": "lavadero-plato-01",
+    "tier": "grid",
+    "src": "/img/lavadero-plato-01.webp",
+    "width": 720,
+    "height": 960,
+    "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAAAwBACdASoQABUAPwFqrE8rJiQiMAgBYCAJaACdIDZgxBL/U9kl4dd1m7AA+F7tgOH3KKCwaBZnks9zy0Fkw7jc824HR8fSYNrGdspYljJIqmyZXoBWhjwCmQEuFwqYfVYm1Yz+zc52fruCFhzMlSxCgGcYbPjadapLNnA+aHU4y6trXKD2yyUoHNsGnDI1sf193HnvuEQr427yfFedzOmIYQAAAA==",
+    "alt": "Bandeja de asado variado con costillas, panceta y tostones, lista para llevar",
+    "fuente": "Google Maps del propio local (provisional, D-013)"
+  },
+  {
+    "id": "lavadero-plato-02",
+    "tier": "grid",
+    "src": "/img/lavadero-plato-02.webp",
+    "width": 720,
+    "height": 960,
+    "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAACQBACdASoQABUAPwFqrE8rJiQiMAgBYCAJbACdMoR4GCTXIqVikHPzXB/zdTgA/lVnLMJx82MNnNAmXFPylqUPqvfFjpCpKVLIsSVyFeFzExwM/YxjwpOm1SqTXnk6Scgl5N0ta2fsfsTwxvGyYAkFUEvaOtuZRtuHU7EtWB9yUnhDRkYAAA==",
+    "alt": "Tortillitas caseras con ensalada de la casa en el Avenida Lavadero",
+    "fuente": "Google Maps del propio local (provisional, D-013)"
+  }
+]

@@ -144,12 +144,20 @@ export function Acto3Paseo() {
             className="absolute inset-0 origin-left rounded-full bg-cobalto"
             style={{ transform: "scaleX(0)" }}
           />
-          <span className="absolute top-2 left-[42%] -translate-x-1/2 font-sans text-xs font-medium text-tinta/50 tabular-nums">
-            Nº 15 · Toledo
-          </span>
-          <span className="absolute top-2 left-[88%] -translate-x-1/2 font-sans text-xs font-medium text-tinta/50 tabular-nums">
-            Nº 67 · Lavadero
-          </span>
+          {restaurantes.map((r, i) => {
+            const numero = r.direccion.calle.match(/\d+/)?.[0] ?? "";
+            const posicion =
+              18 + (i * 68) / Math.max(1, restaurantes.length - 1);
+            return (
+              <span
+                key={r.slug}
+                className="absolute top-2 -translate-x-1/2 font-sans text-xs font-medium whitespace-nowrap text-tinta/50 tabular-nums"
+                style={{ left: `${posicion}%` }}
+              >
+                Nº {numero} · {r.nombreCorto}
+              </span>
+            );
+          })}
         </div>
       </div>
     </section>

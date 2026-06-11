@@ -33,14 +33,16 @@ export function organizationJsonLd() {
 }
 
 export function restaurantJsonLd(r: Restaurante) {
-  const horarios = ([1, 2, 3, 4, 5, 6, 7] as const).flatMap((dia) =>
-    r.horarios[dia].map((t) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: DIAS_SCHEMA[dia - 1],
-      opens: t.abre,
-      closes: t.cierra === "00:00" ? "23:59" : t.cierra,
-    })),
-  );
+  const horarios = r.horarios
+    ? ([1, 2, 3, 4, 5, 6, 7] as const).flatMap((dia) =>
+        r.horarios![dia].map((t) => ({
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: DIAS_SCHEMA[dia - 1],
+          opens: t.abre,
+          closes: t.cierra === "00:00" ? "23:59" : t.cierra,
+        })),
+      )
+    : undefined;
 
   return {
     "@context": "https://schema.org",
@@ -55,18 +57,20 @@ export function restaurantJsonLd(r: Restaurante) {
       addressRegion: "Madrid",
       addressCountry: "ES",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: r.geo.lat,
-      longitude: r.geo.lng,
-    },
-    telephone: r.telefonos[0]?.numero,
+    ...(r.geo && {
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: r.geo.lat,
+        longitude: r.geo.lng,
+      },
+    }),
+    ...(r.telefonos[0] && { telephone: r.telefonos[0].numero }),
     servesCuisine: ["Española", "Tapas", "Cocina casera"],
     priceRange: "€",
     menu: `${urlBase()}/carta`,
     acceptsReservations: true,
     hasMap: urlComoLlegar(r),
-    openingHoursSpecification: horarios,
+    ...(horarios && { openingHoursSpecification: horarios }),
   };
 }
 

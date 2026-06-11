@@ -1,9 +1,12 @@
 /**
- * Locales del grupo — fichas §2.2 y §2.3 (verificadas 11/06/2026).
- * El nombre comercial exacto de cada local está pendiente de confirmación
- * (P1); aquí se usan los nombres de trabajo derivados de Google/web 2021.
+ * Locales del grupo. Toledo 15 y Lavadero: fichas §2.2/§2.3 verificadas
+ * (11/06/2026). Calle Madrid 89 y Almansa 4: confirmados por Andreh el
+ * 11/06/2026 (resuelve parte de P1) — nombre comercial, teléfono, horario
+ * y geolocalización PENDIENTES; nada se inventa (Ley 1).
  *
- * «Bar Avenida 47» NO se incluye: sin evidencia de pertenencia (§2.4).
+ * «Bar Avenida 47» (Av. España) sigue FUERA: sin evidencia (§2.4).
+ * Nota: en C. Madrid 89 Google lista «Restaurante Jamonivino» — si es del
+ * grupo, confirmar con el cliente y completar la ficha con sus datos.
  */
 import { RestauranteSchema, type Restaurante, type Tramo } from "./schemas";
 
@@ -13,6 +16,7 @@ export const restaurantes: Restaurante[] = [
   RestauranteSchema.parse({
     slug: "centro",
     nombre: "Avenida — Getafe Centro",
+    nombreCorto: "Getafe Centro",
     placa: {
       eyebrow: "RESTAURANTES",
       texto: "AVENIDA",
@@ -46,7 +50,8 @@ export const restaurantes: Restaurante[] = [
     },
     horariosConfirmados: true,
     serviciosDisponibles: ["eventos", "catering", "asados"],
-    galeriaIds: [], // B2 pendiente de fotos
+    // Provisionales de Google Maps del propio local (D-013, P7 vivo)
+    galeriaIds: ["centro-fachada-01", "centro-plato-01", "centro-plato-02"],
     descripcionCorta:
       "Restaurante referencia en Getafe. Calidad y servicio a un precio imbatible.",
     descripcionLarga:
@@ -58,6 +63,7 @@ export const restaurantes: Restaurante[] = [
   RestauranteSchema.parse({
     slug: "lavadero",
     nombre: "Avenida Lavadero",
+    nombreCorto: "Lavadero",
     placa: {
       eyebrow: "AVENIDA",
       texto: "LAVADERO",
@@ -97,14 +103,75 @@ export const restaurantes: Restaurante[] = [
     },
     horariosConfirmados: false,
     serviciosDisponibles: ["eventos", "catering", "asados"],
-    galeriaIds: [], // B2 pendiente de fotos
-    descripcionCorta:
-      "Trato familiar y acogedor en este rincón de Getafe.",
+    // Provisionales de Google Maps del propio local (D-013, P7 vivo)
+    galeriaIds: [
+      "lavadero-fachada-01",
+      "lavadero-plato-01",
+      "lavadero-plato-02",
+    ],
+    descripcionCorta: "Trato familiar y acogedor en este rincón de Getafe.",
     descripcionLarga:
       "Trato familiar y acogedor en este rincón de Getafe. Te ofrecemos menú " +
       "diario, aperitivos, raciones y todo lo que necesites a un precio que te " +
       "resultará difícil de creer. Tradición, frescura y esencia — y una sala " +
       "privada en la planta de arriba para celebraciones.",
+  } satisfies Restaurante),
+
+  RestauranteSchema.parse({
+    slug: "calle-madrid",
+    nombre: "Avenida — Calle Madrid",
+    nombreCorto: "Calle Madrid",
+    placa: {
+      eyebrow: "AVENIDA",
+      texto: "MADRID",
+      pie: "GETAFE",
+      matiz: "cobalto",
+    },
+    direccion: {
+      calle: "C. Madrid, 89",
+      cp: "28901",
+      ciudad: "Getafe, Madrid",
+    },
+    // Geocodificación de la dirección (no hay ficha «Avenida» en Google aún)
+    geo: { lat: 40.3101584, lng: -3.7287104 },
+    telefonos: [], // PENDIENTE P4
+    horarios: null, // PENDIENTE P5 — jamás inventar
+    horariosConfirmados: false,
+    serviciosDisponibles: ["eventos", "catering", "asados"],
+    galeriaIds: [], // PENDIENTE P7
+    descripcionCorta: "El Avenida de la calle Madrid, en plena calle mayor de Getafe.",
+    descripcionLarga:
+      "Mismo espíritu Avenida en la calle Madrid: cocina casera y precio de " +
+      "barrio. Estamos completando la ficha de este local — nombre, teléfono " +
+      "y horarios llegan en cuanto el grupo nos los confirme.",
+  } satisfies Restaurante),
+
+  RestauranteSchema.parse({
+    slug: "almansa",
+    nombre: "Avenida — Almansa",
+    nombreCorto: "Almansa",
+    placa: {
+      eyebrow: "AVENIDA",
+      texto: "ALMANSA",
+      pie: "GETAFE",
+      matiz: "aceituna",
+    },
+    direccion: {
+      calle: "C. Almansa, 4",
+      cp: "28901",
+      ciudad: "Getafe, Madrid",
+    },
+    // Sin geo: la dirección no geocodifica en Getafe (confirmar con cliente)
+    telefonos: [], // PENDIENTE P4
+    horarios: null, // PENDIENTE P5 — jamás inventar
+    horariosConfirmados: false,
+    serviciosDisponibles: ["eventos", "catering", "asados"],
+    galeriaIds: [], // PENDIENTE P7
+    descripcionCorta: "El cuarto portal del grupo, en la calle Almansa.",
+    descripcionLarga:
+      "Mismo espíritu Avenida en la calle Almansa: cocina casera y precio de " +
+      "barrio. Estamos completando la ficha de este local — nombre, teléfono " +
+      "y horarios llegan en cuanto el grupo nos los confirme.",
   } satisfies Restaurante),
 ];
 

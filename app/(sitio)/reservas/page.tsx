@@ -49,6 +49,12 @@ export default function PaginaReservas() {
                   </p>
                   <EstadoVivo restaurante={r} className="mt-3 text-tinta/80" />
                   <div className="mt-4 space-y-2 text-xl text-cobalto sm:text-2xl">
+                    {r.telefonos.length === 0 && (
+                      <p className="font-sans text-sm text-tinta/55">
+                        Teléfono en breve — usa el formulario o llama a Getafe
+                        Centro
+                      </p>
+                    )}
                     {r.telefonos.map((t) => (
                       <div key={t.numero}>
                         <TelCopiable telefono={t} />

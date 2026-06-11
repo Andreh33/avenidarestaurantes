@@ -169,8 +169,9 @@ export function estadoLocal(
   return { abierto: false, proximaApertura: null };
 }
 
-/** API del prompt maestro (§7.3). */
+/** API del prompt maestro (§7.3). Horario desconocido (null) = nunca «abierto». */
 export function isOpenNow(restaurante: Restaurante, ahora: Date): boolean {
+  if (!restaurante.horarios) return false;
   return estadoLocal(restaurante.horarios, ahora).abierto;
 }
 
@@ -178,6 +179,7 @@ export function nextOpening(
   restaurante: Restaurante,
   ahora: Date,
 ): { dia: DiaIso; hora: string; esHoy: boolean; esManana: boolean } | null {
+  if (!restaurante.horarios) return null;
   const estado = estadoLocal(restaurante.horarios, ahora);
   return estado.abierto ? null : estado.proximaApertura;
 }

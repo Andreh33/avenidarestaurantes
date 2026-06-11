@@ -59,18 +59,20 @@ export function Acto7Voces() {
         )}
 
         <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
-          {restaurantes.map((r) => (
-            <a
-              key={r.slug}
-              href={urlResenas(r)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="enlace inline-flex items-center gap-2 font-sans text-sm font-medium text-cobalto"
-            >
-              Léenos en Google Maps · {r.nombre}
-              <IconoFlechaEnlace />
-            </a>
-          ))}
+          {restaurantes
+            .filter((r) => r.placeId)
+            .map((r) => (
+              <a
+                key={r.slug}
+                href={urlResenas(r)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="enlace inline-flex items-center gap-2 font-sans text-sm font-medium text-cobalto"
+              >
+                Léenos en Google Maps · {r.nombreCorto}
+                <IconoFlechaEnlace />
+              </a>
+            ))}
         </div>
       </Container>
     </section>

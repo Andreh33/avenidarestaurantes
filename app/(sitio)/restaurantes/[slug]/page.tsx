@@ -12,6 +12,8 @@ import { Aparece } from "@/components/motion/Aparece";
 import { ButtonLink } from "@/components/ui/Button";
 import { urlComoLlegar, urlResenas } from "@/lib/maps";
 import { breadcrumbJsonLd, restaurantJsonLd } from "@/lib/seo";
+import { fotoPorId } from "@/lib/assets";
+import { Foto } from "@/components/ui/Foto";
 import {
   IconoFlechaEnlace,
   IconoMapa,
@@ -133,6 +135,12 @@ export default async function PaginaRestaurante({
                 Teléfono
               </h2>
               <div className="mt-3 space-y-2 text-lg text-cobalto">
+                {r.telefonos.length === 0 && (
+                  <p className="font-sans text-sm text-tinta/60">
+                    En breve. Mientras tanto, reserva por el formulario o
+                    llamando a Getafe Centro.
+                  </p>
+                )}
                 {r.telefonos.map((t) => (
                   <div key={t.numero} className="text-tinta">
                     <TelCopiable telefono={t} />
@@ -182,7 +190,7 @@ export default async function PaginaRestaurante({
         </Section>
       )}
 
-      {/* Galería: estado vacío honesto hasta B2 (P7) */}
+      {/* Galería del local (provisional de Google, D-013 — P7 vivo) */}
       <Section className="py-14">
         <Container>
           <Aparece>
@@ -190,22 +198,50 @@ export default async function PaginaRestaurante({
               <h2 className="text-eyebrow font-sans text-cobalto uppercase">
                 La casa
               </h2>
-              <p className="mt-4 max-w-xl font-serif text-2xl italic text-tinta/80">
-                Las fotos del local están de camino. Mientras tanto, lo mejor
-                es verlo en persona — pásate y haz tú la primera.
+            </div>
+            {r.galeriaIds.length > 0 ? (
+              <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {r.galeriaIds.map((id) => {
+                  const foto = fotoPorId(id);
+                  return (
+                    <figure key={id} data-aparece>
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-(--radius-card) shadow-card">
+                        <Foto
+                          foto={foto}
+                          fill
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                          className="transition-transform duration-500 ease-(--ease-esmalte) hover:scale-[1.04]"
+                        />
+                      </div>
+                      <figcaption className="mt-2 font-sans text-xs text-tinta/55">
+                        {foto.alt}
+                      </figcaption>
+                    </figure>
+                  );
+                })}
+              </div>
+            ) : (
+              <p
+                data-aparece
+                className="mt-4 max-w-xl font-serif text-2xl italic text-tinta/80"
+              >
+                Las fotos de este local están de camino. Mientras tanto, lo
+                mejor es verlo en persona — pásate y haz tú la primera.
               </p>
-              <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+            )}
+            {r.placeId && (
+              <div data-aparece className="mt-7 flex flex-wrap gap-x-8 gap-y-3">
                 <a
                   href={urlResenas(r)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="enlace inline-flex items-center gap-2 font-sans text-sm font-medium text-cobalto"
                 >
-                  Léenos en Google Maps
+                  Más fotos y opiniones en Google Maps
                   <IconoFlechaEnlace />
                 </a>
               </div>
-            </div>
+            )}
           </Aparece>
         </Container>
       </Section>

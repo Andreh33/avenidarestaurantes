@@ -33,6 +33,7 @@ export function BarraReservaMovil({
     };
   }, []);
 
+  // Local sin teléfono publicado (P4): la barra ofrece solo Reservar
   const tel = restaurante.telefonos[0];
 
   return (
@@ -43,13 +44,15 @@ export function BarraReservaMovil({
       )}
     >
       <div className="mx-auto flex max-w-md gap-2 rounded-(--radius-card) border border-tinta/10 bg-tiza p-2 shadow-placa">
-        <a
-          href={`tel:${tel.numero}`}
-          className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[10px] bg-cobalto font-sans text-sm font-semibold text-tiza active:scale-[0.97]"
-        >
-          <IconoTelefono />
-          Llamar
-        </a>
+        {tel && (
+          <a
+            href={`tel:${tel.numero}`}
+            className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[10px] bg-cobalto font-sans text-sm font-semibold text-tiza active:scale-[0.97]"
+          >
+            <IconoTelefono />
+            Llamar
+          </a>
+        )}
         <Link
           href="/reservas"
           className="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-[10px] bg-vermut font-sans text-sm font-semibold text-tiza active:scale-[0.97]"

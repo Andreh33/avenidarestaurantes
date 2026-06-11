@@ -11,15 +11,17 @@ import { IconoFacebook, IconoInstagram } from "@/components/ui/iconos";
 
 const enlaces = [
   { href: "/", etiqueta: "Inicio" },
-  { href: "/restaurantes/centro", etiqueta: "Getafe Centro" },
-  { href: "/restaurantes/lavadero", etiqueta: "Lavadero" },
+  ...restaurantes.map((r) => ({
+    href: `/restaurantes/${r.slug}`,
+    etiqueta: r.nombreCorto,
+  })),
   { href: "/carta", etiqueta: "La carta" },
   { href: "/menu-del-dia", etiqueta: "Menú del día" },
   { href: "/eventos", etiqueta: "Eventos" },
   { href: "/catering", etiqueta: "Catering" },
   { href: "/asados", etiqueta: "Asados para llevar" },
   { href: "/reservas", etiqueta: "Reservar mesa", destacado: true },
-] as const;
+];
 
 const lista = {
   oculto: {},
@@ -110,7 +112,7 @@ export function MenuMovil() {
                 {restaurantes.map((r) => (
                   <p key={r.slug}>
                     <span className="font-semibold text-tiza/90">
-                      {r.placa.texto === "AVENIDA" ? "Centro" : "Lavadero"}
+                      {r.nombreCorto}
                     </span>{" "}
                     · {r.direccion.calle}
                   </p>

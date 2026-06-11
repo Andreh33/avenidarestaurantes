@@ -67,21 +67,28 @@ export const GrupoSchema = z.object({
 export const RestauranteSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   nombre: z.string(),
+  /** Para chips y builders: «Getafe Centro», «Lavadero»… */
+  nombreCorto: z.string(),
   placa: PlacaSchema,
   direccion: z.object({
     calle: z.string(),
     cp: z.string().regex(/^\d{5}$/),
     ciudad: z.string(),
   }),
-  geo: z.object({
-    lat: z.number().min(-90).max(90),
-    lng: z.number().min(-180).max(180),
-  }),
-  placeId: z.string().min(10),
-  telefonos: z.array(TelefonoSchema).min(1),
+  /** Ausente mientras la dirección no geocodifique (locales nuevos). */
+  geo: z
+    .object({
+      lat: z.number().min(-90).max(90),
+      lng: z.number().min(-180).max(180),
+    })
+    .optional(),
+  placeId: z.string().min(10).optional(),
+  /** Puede estar vacío (local pendiente de datos, P4). */
+  telefonos: z.array(TelefonoSchema),
   /** Número de WhatsApp para reservas — PENDIENTE de cliente. */
   whatsapp: z.string().regex(/^\+\d{9,15}$/).optional(),
-  horarios: HorarioSemanalSchema,
+  /** null = horario aún desconocido (jamás inventarlo, Ley 1). */
+  horarios: HorarioSemanalSchema.nullable(),
   horariosConfirmados: z.boolean(),
   serviciosDisponibles: z.array(z.string()),
   galeriaIds: z.array(z.string()),

@@ -2,19 +2,21 @@ import Link from "next/link";
 import type { Restaurante } from "@/content/schemas";
 import { PlacaAzulejo } from "@/components/placas/PlacaAzulejo";
 import { EstadoVivo } from "@/components/ui/EstadoVivo";
+import { Foto } from "@/components/ui/Foto";
+import { fachadaDeLocal } from "@/lib/assets";
 import { IconoFlechaEnlace, IconoMapa } from "@/components/ui/iconos";
 import { cn } from "@/lib/cn";
 
 /**
- * Fachada-card del Acto III (§9): cada local como un portal de la calle.
- * Sin fotos hasta B2 (Ley 4): toldo a rayas, placa azulejo, número de
- * portal gigante y tipografía. El hueco de la foto real ya está previsto
- * en la composición (la columna izquierda pasará a ser imagen).
+ * Fachada-card del Acto III (§9): cada local como un portal de la calle,
+ * con su foto de fachada real (provisional de Google, D-013), toldo a
+ * rayas, placa azulejo y número de portal gigante.
  */
 export function FachadaCard({ restaurante }: { restaurante: Restaurante }) {
   const r = restaurante;
   const esCobalto = r.placa.matiz === "cobalto";
   const numeroPortal = r.direccion.calle.match(/\d+/)?.[0] ?? "";
+  const fachada = fachadaDeLocal(r.slug);
 
   return (
     <article
@@ -34,7 +36,18 @@ export function FachadaCard({ restaurante }: { restaurante: Restaurante }) {
         )}
       />
 
-      <div className="relative flex flex-1 flex-col justify-between gap-8 p-7 sm:p-10">
+      {/* La fachada real */}
+      {fachada && (
+        <div className="relative h-[36%] min-h-36 w-full shrink-0 overflow-hidden">
+          <Foto
+            foto={fachada}
+            fill
+            sizes="(min-width: 1024px) 68vw, 100vw"
+          />
+        </div>
+      )}
+
+      <div className="relative flex flex-1 flex-col justify-between gap-6 p-7 sm:p-9">
         {/* Nº de portal gigante */}
         <span
           aria-hidden="true"
@@ -47,15 +60,15 @@ export function FachadaCard({ restaurante }: { restaurante: Restaurante }) {
           {numeroPortal}
         </span>
 
-        <div className="relative max-w-md">
+        <div className="relative flex max-w-2xl flex-wrap items-center gap-6">
           <PlacaAzulejo
             eyebrow={r.placa.eyebrow}
             texto={r.placa.texto}
             pie={r.placa.pie}
             matiz={r.placa.matiz}
-            className="max-w-[15rem] sm:max-w-[17rem]"
+            className="max-w-[10.5rem] sm:max-w-[12rem]"
           />
-          <p className="mt-6 font-serif text-xl italic text-tinta/85 sm:text-2xl">
+          <p className="min-w-48 flex-1 font-serif text-lg italic text-tinta/85 sm:text-xl">
             {r.descripcionCorta}
           </p>
         </div>

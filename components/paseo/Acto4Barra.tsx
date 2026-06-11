@@ -3,6 +3,16 @@ import { Container } from "@/components/ui/Container";
 import { Marquee } from "@/components/ui/Marquee";
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { ButtonLink } from "@/components/ui/Button";
+import { Foto } from "@/components/ui/Foto";
+import { Aparece } from "@/components/motion/Aparece";
+import { fotoPorId } from "@/lib/assets";
+
+/** Lo que de verdad sale de la cocina (fotos reales, D-013). */
+const FOTOS_BARRA = [
+  { id: "centro-plato-02", pie: "Judías estofadas, de puchero" },
+  { id: "centro-plato-01", pie: "El mixto con patatas de verdad" },
+  { id: "lavadero-plato-02", pie: "Tortillitas con ensalada de la casa" },
+];
 
 /**
  * ACTO IV · La Barra (§9): grid editorial de platos firma + marquee de
@@ -33,6 +43,30 @@ export function Acto4Barra() {
       <p className="sr-only">
         De nuestra despensa: {productosDespensa.join(", ")}.
       </p>
+
+      {/* Lo que sale de la cocina: fotos reales con pie */}
+      <Container className="mt-14">
+        <Aparece className="grid gap-5 sm:grid-cols-3" stagger={0.12}>
+          {FOTOS_BARRA.map((f) => {
+            const foto = fotoPorId(f.id);
+            return (
+              <figure key={f.id} data-aparece>
+                <div className="relative aspect-[4/3] overflow-hidden rounded-(--radius-card) shadow-card">
+                  <Foto
+                    foto={foto}
+                    fill
+                    sizes="(min-width: 640px) 30vw, 100vw"
+                    className="transition-transform duration-500 ease-(--ease-esmalte) hover:scale-[1.04]"
+                  />
+                </div>
+                <figcaption className="mt-3 font-serif text-base italic text-tinta/70">
+                  {f.pie}
+                </figcaption>
+              </figure>
+            );
+          })}
+        </Aparece>
+      </Container>
 
       <Container className="mt-14">
         {platos.length === 0 ? (
