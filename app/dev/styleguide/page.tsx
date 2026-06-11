@@ -1,0 +1,301 @@
+import type { Metadata } from "next";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { Button, ButtonLink } from "@/components/ui/Button";
+import { PlacaAzulejo } from "@/components/placas/PlacaAzulejo";
+import { SplitHeading } from "@/components/motion/SplitHeading";
+import {
+  IconoTelefono,
+  IconoWhatsApp,
+  IconoMapa,
+  IconoReloj,
+  IconoTenedor,
+  IconoCana,
+  IconoLlama,
+  IconoPlaca,
+  IconoGirando,
+} from "@/components/ui/iconos";
+
+export const metadata: Metadata = {
+  title: "Styleguide · interno",
+  robots: { index: false, follow: false },
+};
+
+const paleta = [
+  { nombre: "hueso", clase: "bg-hueso", hex: "#F7F3EB", claro: true },
+  { nombre: "cobalto", clase: "bg-cobalto", hex: "#1E40AF" },
+  { nombre: "vermut", clase: "bg-vermut", hex: "#C2410C" },
+  { nombre: "aceituna", clase: "bg-aceituna", hex: "#4D5B3F" },
+  { nombre: "noche", clase: "bg-noche", hex: "#0B1B33" },
+  { nombre: "tinta", clase: "bg-tinta", hex: "#16213A" },
+  { nombre: "tiza", clase: "bg-tiza", hex: "#FDFBF7", claro: true },
+  { nombre: "tungsteno", clase: "bg-tungsteno", hex: "#FFC46E", claro: true },
+];
+
+const iconos = [
+  { nombre: "telefono", icono: <IconoTelefono /> },
+  { nombre: "whatsapp", icono: <IconoWhatsApp /> },
+  { nombre: "mapa", icono: <IconoMapa /> },
+  { nombre: "reloj", icono: <IconoReloj /> },
+  { nombre: "tenedor", icono: <IconoTenedor /> },
+  { nombre: "caña", icono: <IconoCana /> },
+  { nombre: "llama", icono: <IconoLlama /> },
+  { nombre: "placa", icono: <IconoPlaca /> },
+  { nombre: "girando", icono: <IconoGirando /> },
+];
+
+function Rotulo({ children }: { children: string }) {
+  return (
+    <p className="text-eyebrow mb-6 font-sans text-cobalto uppercase">
+      {children}
+    </p>
+  );
+}
+
+export default function Styleguide() {
+  return (
+    <main>
+      {/* ===== Cabecera ===== */}
+      <Section className="border-b border-tinta/10">
+        <Container>
+          <p className="text-eyebrow font-sans text-vermut uppercase">
+            Interno · B1
+          </p>
+          <h1 className="text-titular font-display mt-3">
+            Styleguide del sistema
+          </h1>
+          <p className="text-lead mt-4 max-w-2xl text-tinta/70">
+            Tokens, tipografía, placas y componentes base de «El Paseo».
+            Todo lo que se construya a partir de aquí sale de esta página.
+          </p>
+        </Container>
+      </Section>
+
+      {/* ===== Placas ===== */}
+      <Section className="border-b border-tinta/10">
+        <Container>
+          <Rotulo>Sistema de placas</Rotulo>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex flex-col gap-3">
+              <PlacaAzulejo
+                eyebrow="RESTAURANTES"
+                texto="AVENIDA"
+                pie="GETAFE"
+                conBrillo
+              />
+              <p className="text-sm text-tinta/60">
+                Grupo / Centro · matiz cobalto · con brillo de carga
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <PlacaAzulejo
+                eyebrow="AVENIDA"
+                texto="LAVADERO"
+                pie="GETAFE"
+                matiz="aceituna"
+              />
+              <p className="text-sm text-tinta/60">
+                Lavadero · propuesta matiz aceituna (decisión en B2 con fotos)
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 rounded-(--radius-card) bg-noche p-6">
+              <PlacaAzulejo eyebrow="RESTAURANTES" texto="AVENIDA" pie="GETAFE" encendida />
+              <p className="text-sm text-tiza/60">
+                Encendida · glow tungsteno (Acto VIII, noche)
+              </p>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ===== Paleta ===== */}
+      <Section className="border-b border-tinta/10">
+        <Container>
+          <Rotulo>Paleta — tokens §5.1</Rotulo>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {paleta.map((c) => (
+              <div
+                key={c.nombre}
+                className={`${c.clase} flex aspect-[4/3] flex-col justify-end rounded-(--radius-card) p-4 ${
+                  c.claro
+                    ? "border border-tinta/10 text-tinta"
+                    : "text-tiza"
+                }`}
+              >
+                <p className="font-sans text-sm font-semibold">--{c.nombre}</p>
+                <p className="font-sans text-xs tabular-nums opacity-70">
+                  {c.hex}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* ===== Tipografía ===== */}
+      <Section className="border-b border-tinta/10">
+        <Container className="space-y-10">
+          <Rotulo>Tipografía — escala fluida §5.2</Rotulo>
+
+          <div>
+            <p className="mb-2 text-sm text-tinta/50">
+              display · Bricolage Grotesque 800
+            </p>
+            <p className="text-display font-display text-tinta">LA AVENIDA</p>
+          </div>
+
+          <div>
+            <p className="mb-2 text-sm text-tinta/50">
+              titular · Bricolage Grotesque 700
+            </p>
+            <p className="text-titular font-display text-tinta">
+              De la barra a la sobremesa
+            </p>
+          </div>
+
+          <div>
+            <p className="mb-2 text-sm text-tinta/50">
+              rotulo · Bricolage Grotesque 700
+            </p>
+            <p className="text-rotulo font-display text-tinta">
+              Raciones de toda la vida
+            </p>
+          </div>
+
+          <div>
+            <p className="mb-2 text-sm text-tinta/50">
+              editorial · Instrument Serif italic
+            </p>
+            <p className="font-serif text-3xl italic">
+              la casera, la que siempre gana
+            </p>
+          </div>
+
+          <div>
+            <p className="mb-2 text-sm text-tinta/50">lead · Instrument Sans</p>
+            <p className="text-lead max-w-2xl text-tinta/80">
+              Trato familiar y acogedor en este rincón de Getafe. Menú diario,
+              aperitivos, raciones y todo lo que necesites.
+            </p>
+          </div>
+
+          <div>
+            <p className="mb-2 text-sm text-tinta/50">eyebrow + precios en tabular (§15.14)</p>
+            <p className="text-eyebrow font-sans text-cobalto uppercase">
+              Desde las ocho de la mañana
+            </p>
+            <div className="mt-4 flex max-w-xs flex-col gap-1 font-sans tabular-nums">
+              <p className="flex justify-between border-b border-tinta/10 pb-1">
+                <span>[PENDIENTE: plato]</span>
+                <span className="font-semibold">12,50 €</span>
+              </p>
+              <p className="flex justify-between border-b border-tinta/10 pb-1">
+                <span>[PENDIENTE: plato]</span>
+                <span className="font-semibold">9,80 €</span>
+              </p>
+              <p className="flex justify-between">
+                <span>[PENDIENTE: plato]</span>
+                <span className="font-semibold">4,00 €</span>
+              </p>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ===== SplitHeading ===== */}
+      <Section className="border-b border-tinta/10">
+        <Container>
+          <Rotulo>SplitHeading — titular kinetic (verifica espacios, §16.1)</Rotulo>
+          <SplitHeading
+            as="p"
+            className="text-display font-display text-cobalto"
+            trigger="scroll"
+          >
+            CALIDAD AL MEJOR PRECIO
+          </SplitHeading>
+        </Container>
+      </Section>
+
+      {/* ===== Botones ===== */}
+      <Section className="border-b border-tinta/10">
+        <Container className="space-y-8">
+          <Rotulo>Botones — todos los estados (Ley 5)</Rotulo>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Button variante="vermut">Reservar mesa</Button>
+            <Button variante="cobalto">Ver la carta</Button>
+            <Button variante="fantasma">Cómo llegar</Button>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Button variante="vermut" loading>
+              Enviando reserva
+            </Button>
+            <Button variante="cobalto" disabled>
+              No disponible
+            </Button>
+            <Button variante="vermut">
+              <IconoWhatsApp />
+              Reservar por WhatsApp
+            </Button>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-8">
+            <ButtonLink href="/dev/styleguide" variante="fantasma">
+              Como enlace (next/link)
+            </ButtonLink>
+            <a href="#top" className="enlace font-medium text-cobalto">
+              Enlace con subrayado animado
+            </a>
+          </div>
+
+          <p className="max-w-xl text-sm text-tinta/60">
+            Hover: −1px y matiz · Active: scale 0.97 · Focus: anillo doble
+            esmalte cobalto (prueba con tabulador) · Loading: spinner propio ·
+            Disabled: 45 % — el magnético (≤ 6 px) llega en B20.
+          </p>
+        </Container>
+      </Section>
+
+      {/* ===== Iconos ===== */}
+      <Section className="border-b border-tinta/10">
+        <Container>
+          <Rotulo>Iconografía propia — trazo 1.5, SVG inline (Ley 6)</Rotulo>
+          <div className="flex flex-wrap gap-6">
+            {iconos.map((i) => (
+              <div
+                key={i.nombre}
+                className="flex w-24 flex-col items-center gap-2 rounded-(--radius-card) border border-tinta/10 p-4 text-cobalto"
+              >
+                <span className="text-2xl">{i.icono}</span>
+                <span className="font-sans text-xs text-tinta/60">
+                  {i.nombre}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* ===== Noche ===== */}
+      <Section className="bg-noche">
+        <Container>
+          <Rotulo>Sobre noche — contraste AA</Rotulo>
+          <h2 className="text-titular font-display text-tiza">
+            Cae la noche en la Avenida
+          </h2>
+          <p className="text-lead mt-4 max-w-2xl text-tiza/75">
+            Texto tiza sobre azul noche profundo. Jamás negro puro. Las sombras
+            de noche son cálidas; el glow, tungsteno.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button variante="vermut">Reservar mesa</Button>
+            <a href="#top" className="enlace font-medium text-tungsteno">
+              Léenos en Google Maps
+            </a>
+          </div>
+        </Container>
+      </Section>
+    </main>
+  );
+}

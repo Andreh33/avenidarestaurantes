@@ -37,3 +37,27 @@ Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: deci
 **Alternativas:** adelantar el componente `PlacaAzulejo` definitivo.
 
 **Porqué:** B0 es cimientos y CI/CD vivo, no dirección de arte. La placa definitiva merece el gate visual de B1 con la skill recargada.
+
+---
+
+## D-004 · PlacaAzulejo como composición HTML + grain SVG
+
+**Fecha:** 11/06/2026 · **Bloque:** B1
+
+**Decisión:** el componente `PlacaAzulejo` se construye con HTML/CSS (cenefa con borders, esmalte con gradiente, cuerpo escalado por container queries y longitud del texto) más un overlay SVG `feTurbulence` para el grain. La versión SVG pura se reserva para favicon y OG images (B18/B20).
+
+**Alternativas:** SVG puro con `<text>` como pide §4 literalmente.
+
+**Porqué:** el texto SVG no fluye ni escala con tipografías web de forma robusta (FOUT, longitudes variables como «CALLE SIN SALIDA»); la composición HTML da el mismo resultado visual, mejor accesibilidad y cero riesgo de desbordes. Donde el contexto exige SVG real (favicon/OG), se generará SVG.
+
+---
+
+## D-005 · Registro de plugins GSAP repartido
+
+**Fecha:** 11/06/2026 · **Bloque:** B1
+
+**Decisión:** `lib/gsap.ts` solo registra el núcleo + ScrollTrigger. SplitText, Flip y Observer se registran localmente en los componentes que los usan.
+
+**Alternativas:** registrar los cinco plugins en `lib/gsap.ts` como sugiere §7.2 literalmente.
+
+**Porqué:** presupuesto de JS por ruta (§14, ≤ 230 KB en `/`): así SplitText/Flip solo viajan en las rutas que los montan, que es exactamente lo que B19 va a exigir.
