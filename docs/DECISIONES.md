@@ -85,3 +85,15 @@ Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: deci
 **Alternativas:** enlaces a 404 hasta B13-16; CTA solo desktop; chrome global incluida la home.
 
 **Porque:** un 404 en un gate o en produccion es indigno; la regla de oro §12.3 pide reservar a un toque en toda pagina, tambien en movil; y el «Proximamente» publico no debe ensenar nav a paginas en obras.
+
+---
+
+## D-008 · Collage del hero sin fotos: placas + monograma
+
+**Fecha:** 11/06/2026 · **Bloque:** B5
+
+**Decision:** mientras no haya fotos del cliente (P7), el collage parallax del Acto I se compone con las dos placas azulejo a distinta profundidad (scroll scrub 0.8 + puntero ≤12 px en desktop) y un monograma «A» gigante al 6 %. La tercera linea del titular es el claim en Instrument Serif italic vermut (sin año de fundacion, P9). Cuando lleguen las fotos, B2 sustituye las capas por las 3 fotos reales previstas en §9.
+
+**Alternativas:** esperar a B2 para el hero; usar texturas decorativas.
+
+**Porque:** Ley 4 — el vacio bien diseñado es premium; las placas SON la identidad y el hero queda completo y digno desde hoy.

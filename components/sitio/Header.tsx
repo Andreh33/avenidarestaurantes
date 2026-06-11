@@ -67,6 +67,7 @@ export function Header() {
               href="/"
               aria-label="Restaurantes Avenida — inicio"
               onClick={cerrarMenu}
+              data-placa-header
               className={cn(
                 "transition-colors",
                 menuAbierto ? "text-tiza" : "text-cobalto",
