@@ -23,6 +23,7 @@ export function Header() {
   const [oculto, setOculto] = useState(false);
   const [conSombra, setConSombra] = useState(false);
   const ultimoY = useRef(0);
+  const progreso = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let raf = 0;
@@ -34,9 +35,17 @@ export function Header() {
         if (y > ultimoY.current + 4 && y > 80) setOculto(true);
         else if (y < ultimoY.current - 4) setOculto(false);
         ultimoY.current = y;
+        // Línea de calle: progreso de lectura (§15.17), solo transform
+        if (progreso.current) {
+          const total =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const p = total > 0 ? Math.min(1, y / total) : 0;
+          progreso.current.style.transform = `scaleX(${p})`;
+        }
       });
     };
     window.addEventListener("scroll", alScroll, { passive: true });
+    alScroll();
     return () => {
       window.removeEventListener("scroll", alScroll);
       cancelAnimationFrame(raf);
@@ -125,6 +134,18 @@ export function Header() {
                 />
               </button>
             </div>
+          </div>
+
+          {/* Línea de calle: 2px de progreso bajo el header (§15.17) */}
+          <div
+            aria-hidden="true"
+            className="relative h-0.5 w-full overflow-hidden"
+          >
+            <div
+              ref={progreso}
+              className="h-full w-full origin-left bg-cobalto"
+              style={{ transform: "scaleX(0)" }}
+            />
           </div>
         </div>
       </header>

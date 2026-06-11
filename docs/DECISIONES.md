@@ -109,3 +109,35 @@ Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: deci
 **Alternativas:** CSS scroll-snap (literal de §9); carrusel tactil.
 
 **Porque:** scroll-snap pelea con Lenis (scroll suave global §16.6) y produce tirones; la pila sticky da la misma narrativa de «portal a portal» con scroll 100 % nativo y cero secuestro (§16.7). El arco de luz en movil queda para la integracion global de B12.
+
+---
+
+## D-010 · Cierre B9-B22 en un tiron
+
+**Fecha:** 11/06/2026 · **Bloques:** B9-B22
+
+**Decision:** Andreh autorizo expresamente ejecutar todos los bloques restantes sin compuertas individuales y desplegar a produccion. Los gates se sustituyen por: QA.md actualizado, capturas en docs/capturas/ y el dossier de entrega.
+
+**Porque:** orden directa del arquitecto-revisor (Ley 9 es suya). Las Leyes 1-8 y 10 se mantuvieron integras.
+
+---
+
+## D-011 · View Transitions de la placa: aplazada
+
+**Fecha:** 11/06/2026 · **Bloque:** B13
+
+**Decision:** la View Transition de la placa entre home y ficha queda aplazada; la navegacion es normal y limpia (fallback de §16.11).
+
+**Alternativas:** flag experimental viewTransition de Next/React.
+
+**Porque:** la API en App Router sigue experimental y el riesgo de parpadeos en Safari no compensa en la v1; se reevalua cuando sea estable. El resto del sistema (placa con identidad por local) ya esta preparado.
+
+---
+
+## D-012 · Acto VII sin testimonios hasta el OK del cliente
+
+**Fecha:** 11/06/2026 · **Bloque:** B11
+
+**Decision:** mientras P8 no se resuelva, el acto muestra solo los enlaces discretos a Google Maps por local; las cards-posavasos (rotacion ±1.5°, se enderezan al hover) estan programadas y aparecen solas al marcar aprobadoPorCliente: true.
+
+**Porque:** Ley 1 y §2.6 — publicar testimonios sin permiso expreso esta prohibido; el enlace a Maps es real y util.
