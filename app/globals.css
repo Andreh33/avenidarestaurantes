@@ -119,6 +119,26 @@ body {
 
 /* ============ UTILIDADES DE LA CASA ============ */
 
+/* Skip-to-content estilizado, visible al focus (§15.9) */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  background: var(--color-cobalto);
+  color: var(--color-tiza);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.25s var(--ease-esmalte);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 /* Enlace con subrayado animado por clip-path (§15.7) */
 .enlace {
   position: relative;

@@ -100,6 +100,34 @@ export function IconoPlaca({ className }: { className?: string }) {
   );
 }
 
+export function IconoFacebook({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M13.5 21v-7h2.2l.5-2.6h-2.7V9.7c0-.9.4-1.5 1.5-1.5h1.3V5.9c-.5-.1-1.3-.2-2-.2-2 0-3.3 1.2-3.3 3.5v2.2H9v2.6h2v7" />
+    </Svg>
+  );
+}
+
+export function IconoInstagram({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <rect x="4" y="4" width="16" height="16" rx="4.5" />
+      <circle cx="12" cy="12" r="3.5" />
+      <circle cx="16.8" cy="7.2" r="0.4" fill="currentColor" />
+    </Svg>
+  );
+}
+
+export function IconoFlechaEnlace({ className }: { className?: string }) {
+  return (
+    <Svg className={className}>
+      <path d="M7 17 17 7" />
+      <path d="M9 7h8v8" />
+    </Svg>
+  );
+}
+
 /** Spinner propio para estados loading (jamás un spinner genérico a pantalla completa, §15.24) */
 export function IconoGirando({ className }: { className?: string }) {
   return (

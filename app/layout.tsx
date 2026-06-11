@@ -49,6 +49,9 @@ export default function RootLayout({
       className={`${bricolage.variable} ${instrumentSans.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <a href="#contenido" className="skip-link">
+          Saltar al contenido
+        </a>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
