@@ -61,3 +61,15 @@ Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: deci
 **Alternativas:** registrar los cinco plugins en `lib/gsap.ts` como sugiere §7.2 literalmente.
 
 **Porqué:** presupuesto de JS por ruta (§14, ≤ 230 KB en `/`): así SplitText/Flip solo viajan en las rutas que los montan, que es exactamente lo que B19 va a exigir.
+
+---
+
+## D-006 · Modelado de la verdad: flags `confirmado` + pendientes.ts tipado
+
+**Fecha:** 11/06/2026 · **Bloque:** B3
+
+**Decisión:** los datos con vigencia dudosa (teléfonos Lavadero, horarios web 2021, tel. de reservas) entran en content/ con `confirmado: false` en vez de excluirse; la lista §2.7 vive tipada en `content/pendientes.ts` con qué bloquea cada uno, y `validate:content` cuenta los que bloquean lanzamiento (B22).
+
+**Alternativas:** dejar los datos dudosos fuera y solo placeholders; o un wrapper `Pendiente<T>` por campo.
+
+**Porqué:** la UI necesita decidir por dato (mostrar, matizar u ocultar) y el flag lo permite sin duplicar fuentes; el wrapper complicaba los tipos sin aportar. La carta y el menú quedan vacío/null: ahí no hay dato dudoso, hay ausencia total (Ley 1).
