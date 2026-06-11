@@ -5,6 +5,7 @@ import {
   Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/motion/SmoothScroll";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -47,7 +48,9 @@ export default function RootLayout({
       lang="es"
       className={`${bricolage.variable} ${instrumentSans.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

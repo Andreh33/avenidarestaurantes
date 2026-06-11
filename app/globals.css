@@ -1,12 +1,15 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 /*
- * Tokens del sistema — paleta §5.1 del prompt maestro.
+ * ============================================================
+ * SISTEMA DE TOKENS — Restaurantes Avenida · «El Paseo»
+ * Paleta §5.1 · Tipografía §5.2 · del prompt maestro.
  * Cero hex sueltos en componentes: todo color sale de aquí.
- * Versión B0: lo mínimo para la placa «Próximamente». El sistema completo
- * (arco de luz --sky/--light/--glow, escala fluida) se construye en B1.
+ * ============================================================
  */
 @theme {
+  /* ---- Paleta ---- */
   --color-hueso: #f7f3eb;
   --color-cobalto: #1e40af;
   --color-vermut: #c2410c;
@@ -14,31 +17,132 @@
   --color-noche: #0b1b33;
   --color-tinta: #16213a;
   --color-tiza: #fdfbf7;
+  --color-tungsteno: #ffc46e; /* luz cálida de las placas encendidas (Acto VIII) */
 
+  /* ---- Familias ---- */
   --font-display: var(--font-bricolage);
   --font-sans: var(--font-instrument-sans);
   --font-serif: var(--font-instrument-serif);
+
+  /* ---- Escala tipográfica fluida ---- */
+  --text-display: clamp(2.6rem, 8vw, 7.5rem);
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+
+  --text-titular: clamp(2rem, 5vw, 4rem);
+  --text-titular--line-height: 1.02;
+  --text-titular--letter-spacing: -0.015em;
+  --text-titular--font-weight: 700;
+
+  --text-rotulo: clamp(1.35rem, 2.5vw, 1.9rem);
+  --text-rotulo--line-height: 1.15;
+  --text-rotulo--font-weight: 700;
+
+  --text-lead: clamp(1.05rem, 1.5vw, 1.3rem);
+  --text-lead--line-height: 1.55;
+
+  --text-eyebrow: 0.72rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.3em;
+  --text-eyebrow--font-weight: 600;
+
+  /* ---- Curvas de la casa ---- */
+  --ease-esmalte: cubic-bezier(0.22, 1, 0.36, 1); /* salida suave, como esmalte que asienta */
+  --ease-paseo: cubic-bezier(0.65, 0, 0.35, 1); /* in-out para scrubs y barridos */
+
+  /* ---- Sombras (frías de día — las cálidas de noche llegan con el arco) ---- */
+  --shadow-placa: 0 24px 60px -24px rgba(22, 33, 58, 0.35);
+  --shadow-card: 0 16px 40px -20px rgba(22, 33, 58, 0.25);
+  --shadow-flotante: 0 8px 24px -12px rgba(22, 33, 58, 0.3);
+
+  /* ---- Radios contenidos (§5.3) ---- */
+  --radius-placa: 12px;
+  --radius-card: 16px;
 }
+
+/*
+ * Arco de luz (§4): tokens vivos que el timeline maestro interpola
+ * con ScrollTrigger en la home. Valores de partida = amanecer.
+ * Viven fuera de @theme porque se animan en runtime.
+ */
+:root {
+  --sky: #f7f3eb;
+  --light: #fdfbf7;
+  --glow: rgba(255, 196, 110, 0);
+}
+
+/* ============ BASE ============ */
 
 ::selection {
   background: var(--color-vermut);
   color: var(--color-tiza);
 }
 
-/* Anillo de foco esmalte cobalto (Ley 10) — se refina en B1 con el doble anillo */
+/* Anillo doble esmalte cobalto (§15.8) */
 :focus-visible {
-  outline: 3px solid var(--color-cobalto);
+  outline: 2px solid var(--color-cobalto);
   outline-offset: 3px;
-  border-radius: 4px;
+  box-shadow:
+    0 0 0 1px var(--color-tiza),
+    0 0 0 7px color-mix(in oklab, var(--color-cobalto) 18%, transparent);
+  border-radius: 6px;
 }
 
 body {
   background: var(--color-hueso);
   color: var(--color-tinta);
   font-family: var(--font-sans), system-ui, sans-serif;
+  overscroll-behavior-y: none;
 }
 
-/* Entrada de la placa «Próximamente» — solo transform/opacity (Ley 7) */
+/* Scrollbar fina y discreta, solo punteros finos (§15.4) */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--color-cobalto) 35%, transparent);
+    border-radius: 8px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--color-cobalto) 55%, transparent);
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+/* ============ UTILIDADES DE LA CASA ============ */
+
+/* Enlace con subrayado animado por clip-path (§15.7) */
+.enlace {
+  position: relative;
+  text-decoration: none;
+}
+.enlace::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.15em;
+  height: 0.09em;
+  min-height: 1.5px;
+  background: currentColor;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.35s var(--ease-esmalte);
+}
+.enlace:hover::after,
+.enlace:focus-visible::after {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ============ ANIMACIONES BASE ============ */
+/* Solo transform/opacity/clip-path (Ley 7) */
+
 @keyframes placa-entra {
   from {
     opacity: 0;
@@ -61,7 +165,7 @@ body {
   }
 }
 
-/* Brillo especular que barre la placa una vez, como esmalte al sol */
+/* Brillo especular que barre la placa, como esmalte al sol */
 @keyframes brillo-esmalte {
   from {
     transform: translateX(-130%) skewX(-18deg);
@@ -72,13 +176,13 @@ body {
 }
 
 .anim-placa {
-  animation: placa-entra 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: placa-entra 0.9s var(--ease-esmalte) both;
 }
 
 .anim-texto {
-  animation: texto-entra 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: texto-entra 0.8s var(--ease-esmalte) both;
 }
 
 .anim-brillo {
-  animation: brillo-esmalte 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.9s both;
+  animation: brillo-esmalte 1.4s var(--ease-paseo) 0.9s both;
 }
