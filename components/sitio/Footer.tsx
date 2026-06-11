@@ -120,7 +120,11 @@ export function Footer() {
 
         <p className="mt-5 font-sans text-xs text-tiza/40">
           © {new Date().getFullYear()} {grupo.nombre} · Hecho en Getafe · Web
-          por Latech
+          por Latech · Pulsa{" "}
+          <kbd className="rounded border border-tiza/25 px-1.5 py-0.5 font-sans text-[0.65rem]">
+            R
+          </kbd>{" "}
+          para reservar
         </p>
       </div>
     </footer>

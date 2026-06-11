@@ -218,3 +218,63 @@ body {
 .anim-latido {
   animation: latido 0.6s var(--ease-esmalte) 1;
 }
+
+/* ============ CURSOR PROPIO (§15.5) ============ */
+/* Solo cuando el componente Cursor está montado y el puntero es fino */
+@media (pointer: fine) {
+  .con-cursor-propio,
+  .con-cursor-propio a,
+  .con-cursor-propio button,
+  .con-cursor-propio [role="button"] {
+    cursor: none;
+  }
+  /* Los campos conservan el caret y el cursor de texto */
+  .con-cursor-propio input,
+  .con-cursor-propio textarea,
+  .con-cursor-propio select {
+    cursor: auto;
+  }
+}
+
+/* ============ PROSA LEGAL ============ */
+.prose-avenida h2 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  margin-top: 2.2rem;
+  color: var(--color-tinta);
+}
+.prose-avenida p {
+  margin-top: 0.9rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--color-tinta) 80%, transparent);
+}
+.prose-avenida a {
+  color: var(--color-cobalto);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ============ IMPRESIÓN (§15.34) ============ */
+@media print {
+  header,
+  footer,
+  .skip-link,
+  [data-arco-luz],
+  [data-cue] {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}

@@ -1,0 +1,13 @@
+/* EQUIPO */
+Cliente: Restaurantes Avenida — Getafe (Madrid)
+Estudio: Latech — serviciosonlineweb.com
+Direccion y revision: Andreh
+
+/* GRACIAS */
+A la parroquia de la calle Toledo y la plaza del Lavadero,
+que llevan años demostrando que la casera siempre gana.
+
+/* SITIO */
+Stack: Next.js · React · Tailwind CSS · GSAP · Lenis · Motion
+Tipografias: Bricolage Grotesque · Instrument Serif · Instrument Sans
+Hecho en Getafe.

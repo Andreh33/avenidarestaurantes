@@ -3,60 +3,95 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { restaurantes } from "@/content/restaurantes";
 import { EstadoVivo } from "@/components/ui/EstadoVivo";
-import { IconoTelefono } from "@/components/ui/iconos";
+import { TelCopiable } from "@/components/ui/TelCopiable";
+import { BuilderWhatsApp } from "@/components/reservas/BuilderWhatsApp";
+import { FormularioReserva } from "@/components/reservas/FormularioReserva";
+import { Aparece } from "@/components/motion/Aparece";
 
 export const metadata: Metadata = {
   title: "Reservar mesa · Restaurantes Avenida — Getafe",
   description:
-    "Reserva tu mesa en Restaurantes Avenida (Getafe Centro y Lavadero) por teléfono. WhatsApp y formulario, muy pronto.",
+    "Reserva en Restaurantes Avenida (Getafe Centro y Lavadero): por teléfono, componiendo tu WhatsApp o con el formulario. Te confirmamos al momento.",
 };
 
 /**
- * Stub de reservas: la vía de menos fricción (llamar, §12.1) funciona
- * desde el día 1. WhatsApp y formulario llegan en B15 (P4 pendiente).
+ * /reservas (§12.1): tres vías por orden de fricción real —
+ * 1 llamar · 2 WhatsApp con builder · 3 formulario con degradación.
  */
 export default function PaginaReservas() {
   return (
-    <Section className="min-h-[60svh]">
-      <Container className="max-w-3xl">
+    <Section>
+      <Container className="max-w-5xl">
         <p className="text-eyebrow font-sans text-vermut uppercase">
           Reservar mesa
         </p>
         <h1 className="text-titular font-display mt-3">Te esperamos</h1>
-        <p className="text-lead mt-5 text-tinta/75">
-          De momento, como toda la vida: por teléfono. La reserva por WhatsApp
-          y el formulario están al caer.
+        <p className="text-lead mt-4 max-w-2xl text-tinta/75">
+          Como prefieras: de palabra, por WhatsApp o con el formulario. Las
+          tres llegan a la misma libreta.
         </p>
 
-        <div className="mt-10 space-y-6">
-          {restaurantes.map((r) => {
-            const tel = r.telefonos[0];
-            return (
-              <div
-                key={r.slug}
-                className="rounded-(--radius-card) border border-tinta/10 bg-tiza p-6 shadow-card"
-              >
-                <h2 className="font-display text-rotulo">{r.nombre}</h2>
-                <p className="mt-1 font-sans text-sm text-tinta/60">
-                  {r.direccion.calle} · {r.direccion.cp} {r.direccion.ciudad}
-                </p>
-                <EstadoVivo restaurante={r} className="mt-3 text-tinta/80" />
-                <a
-                  href={`tel:${tel.numero}`}
-                  className="mt-4 inline-flex items-center gap-3 font-display text-2xl font-bold text-cobalto tabular-nums sm:text-3xl"
+        <Aparece className="mt-12 space-y-12" stagger={0.12}>
+          {/* Vía 1 · Llamar */}
+          <div data-aparece>
+            <h2 className="text-rotulo font-display text-tinta">
+              1 · De palabra, como toda la vida
+            </h2>
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              {restaurantes.map((r) => (
+                <div
+                  key={r.slug}
+                  className="rounded-(--radius-card) border border-tinta/10 bg-tiza p-6 shadow-card"
                 >
-                  <IconoTelefono />
-                  {tel.visible}
-                </a>
-                {!tel.confirmado && (
-                  <p className="mt-1 font-sans text-xs text-tinta/50">
-                    [PENDIENTE P4: confirmar teléfono vigente]
+                  <h3 className="font-display text-lg font-bold">{r.nombre}</h3>
+                  <p className="mt-1 font-sans text-sm text-tinta/60">
+                    {r.direccion.calle}
                   </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
+                  <EstadoVivo restaurante={r} className="mt-3 text-tinta/80" />
+                  <div className="mt-4 space-y-2 text-xl text-cobalto sm:text-2xl">
+                    {r.telefonos.map((t) => (
+                      <div key={t.numero}>
+                        <TelCopiable telefono={t} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Vía 2 · WhatsApp */}
+          <div data-aparece className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <h2 className="text-rotulo font-display text-tinta">
+                2 · Por WhatsApp, sin escribir de más
+              </h2>
+              <p className="mt-3 max-w-md font-sans text-base text-tinta/70">
+                Elige local, día y hora; nosotros componemos el mensaje y tú
+                solo le das a enviar.
+              </p>
+            </div>
+            <div className="rounded-(--radius-card) border border-tinta/10 bg-tiza p-6 shadow-card sm:p-8">
+              <BuilderWhatsApp />
+            </div>
+          </div>
+
+          {/* Vía 3 · Formulario */}
+          <div data-aparece className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <h2 className="text-rotulo font-display text-tinta">
+                3 · Con el formulario
+              </h2>
+              <p className="mt-3 max-w-md font-sans text-base text-tinta/70">
+                Déjanos los datos y te confirmamos nosotros. Sin spam, sin
+                cuentas, sin líos.
+              </p>
+            </div>
+            <div className="relative rounded-(--radius-card) border border-tinta/10 bg-tiza p-6 shadow-card sm:p-8">
+              <FormularioReserva />
+            </div>
+          </div>
+        </Aparece>
       </Container>
     </Section>
   );
