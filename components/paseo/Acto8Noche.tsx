@@ -40,6 +40,9 @@ export function Acto8Noche() {
           "--sky": valor("--sky-noche"),
           "--light": valor("--light-noche"),
           ease: "none",
+          // Sin immediateRender: si no, este fromTo pinta «tarde» al cargar
+          // la página y pisa el amanecer del hero.
+          immediateRender: false,
           scrollTrigger: {
             trigger: raiz.current,
             start: "top 95%",
