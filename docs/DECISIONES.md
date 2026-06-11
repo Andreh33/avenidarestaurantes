@@ -73,3 +73,15 @@ Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: deci
 **Alternativas:** dejar los datos dudosos fuera y solo placeholders; o un wrapper `Pendiente<T>` por campo.
 
 **Porqué:** la UI necesita decidir por dato (mostrar, matizar u ocultar) y el flag lo permite sin duplicar fuentes; el wrapper complicaba los tipos sin aportar. La carta y el menú quedan vacío/null: ahí no hay dato dudoso, hay ausencia total (Ley 1).
+
+---
+
+## D-007 · Stubs honestos para toda la IA + CTA de reserva visible en movil
+
+**Fecha:** 11/06/2026 · **Bloque:** B4
+
+**Decision:** (a) todas las rutas de §7.1 existen ya como paginas minimas con datos reales y placeholder honesto «en obras» (componente EnObras), para que la navegacion sea coherente en cada gate; B13-B17 las sustituyen. (b) El boton «Reservar mesa» del header queda visible tambien en movil. (c) La home queda fuera del grupo (sitio) — sin header/footer — hasta que el Paseo la incorpore en B5.
+
+**Alternativas:** enlaces a 404 hasta B13-16; CTA solo desktop; chrome global incluida la home.
+
+**Porque:** un 404 en un gate o en produccion es indigno; la regla de oro §12.3 pide reservar a un toque en toda pagina, tambien en movil; y el «Proximamente» publico no debe ensenar nav a paginas en obras.

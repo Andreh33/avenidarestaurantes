@@ -49,7 +49,7 @@ function PlacaProximamente() {
 
 export default function Home() {
   return (
-    <main className="grid min-h-svh place-items-center px-6 py-12">
+    <main id="contenido" className="grid min-h-svh place-items-center px-6 py-12">
       <div className="flex flex-col items-center text-center">
         <PlacaProximamente />
 
