@@ -1,0 +1,10 @@
+#!/bin/sh
+# Compuerta de pre-push (§6): el contenido inválido no viaja.
+echo "pre-push · validando content/ ..."
+pnpm validate:content || exit 1
+
+# _ingest/ jamás se commitea (§8.2) — cinturón y tirantes
+if git ls-files | grep -q "^_ingest/"; then
+  echo "✗ Hay archivos de _ingest/ en el índice de git. Prohibido (cookies/originales)."
+  exit 1
+fi
