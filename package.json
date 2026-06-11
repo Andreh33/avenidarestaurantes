@@ -9,7 +9,7 @@
     "lint": "eslint",
     "test": "vitest run",
     "validate:content": "tsx scripts/validate-content.ts",
-    "prepare": "git config core.hooksPath .githooks"
+    "prepare": "git config core.hooksPath .githooks || echo sin-git"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
