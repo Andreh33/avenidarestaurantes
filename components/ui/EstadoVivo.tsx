@@ -22,12 +22,34 @@ export function EstadoVivo({
   const [estado, setEstado] = useState<EstadoLocal | null>(null);
 
   useEffect(() => {
+    if (!restaurante.horarios) return;
     const calcular = () =>
-      setEstado(estadoLocal(restaurante.horarios, new Date()));
-    calcular();
+      setEstado(estadoLocal(restaurante.horarios!, new Date()));
+    const raf = requestAnimationFrame(calcular);
     const intervalo = setInterval(calcular, 60_000);
-    return () => clearInterval(intervalo);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearInterval(intervalo);
+    };
   }, [restaurante]);
+
+  // Horario aún desconocido (Ley 1): se dice claro, sin inventar estado
+  if (!restaurante.horarios) {
+    return (
+      <p
+        className={cn(
+          "inline-flex items-center gap-2 font-sans text-sm",
+          className,
+        )}
+      >
+        <span
+          aria-hidden="true"
+          className="inline-block h-2 w-2 rounded-full bg-current opacity-30"
+        />
+        <span>Horario por confirmar</span>
+      </p>
+    );
+  }
 
   let texto = "Consulta horarios";
   let tono: "abierto" | "pronto" | "cerrado" | "neutro" = "neutro";

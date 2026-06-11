@@ -24,6 +24,9 @@ export function FormularioReserva() {
   const restauranteFallback = estado.fallback
     ? restaurantes.find((r) => r.slug === estado.fallback!.local)!
     : null;
+  // Local sin teléfono publicado (P4): la llamada va al Centro
+  const telFallback =
+    restauranteFallback?.telefonos[0] ?? restaurantes[0].telefonos[0];
 
   return (
     <form action={accion} noValidate className="space-y-5">
@@ -56,8 +59,11 @@ export function FormularioReserva() {
 
       <div className="grid gap-4 sm:grid-cols-3">
         <CampoSelect id="local" name="local" label="Local" error={estado.errores?.local}>
-          <option value="centro">Getafe Centro · C. Toledo, 15</option>
-          <option value="lavadero">Lavadero · C. Hospital de San José, 67</option>
+          {restaurantes.map((r) => (
+            <option key={r.slug} value={r.slug}>
+              {r.nombreCorto} · {r.direccion.calle}
+            </option>
+          ))}
         </CampoSelect>
         <CampoTexto
           id="personas"
@@ -129,11 +135,11 @@ export function FormularioReserva() {
               </a>
             ) : (
               <a
-                href={`tel:${restauranteFallback.telefonos[0].numero}`}
+                href={`tel:${telFallback.numero}`}
                 className="inline-flex min-h-11 items-center gap-2 rounded-[10px] bg-vermut px-5 py-2.5 font-sans text-sm font-semibold text-tiza"
               >
                 <IconoTelefono />
-                Llamar y reservar: {restauranteFallback.telefonos[0].visible}
+                Llamar y reservar: {telFallback.visible}
               </a>
             )}
           </div>

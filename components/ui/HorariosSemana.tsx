@@ -19,11 +19,19 @@ export function HorariosSemana({ restaurante }: { restaurante: Restaurante }) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  if (!restaurante.horarios) {
+    return (
+      <p className="font-sans text-sm text-tinta/60">
+        Estamos confirmando los horarios de este local con el grupo.
+      </p>
+    );
+  }
+
   return (
     <div>
       <ul className="divide-y divide-tinta/10 font-sans text-sm">
         {([1, 2, 3, 4, 5, 6, 7] as const).map((dia) => {
-          const tramos = restaurante.horarios[dia];
+          const tramos = restaurante.horarios![dia];
           const esHoy = hoy === dia;
           return (
             <li

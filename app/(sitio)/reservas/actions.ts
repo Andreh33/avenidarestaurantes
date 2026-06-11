@@ -3,15 +3,17 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { z } from "zod";
-import { restaurantePorSlug } from "@/content/restaurantes";
+import { restaurantes, restaurantePorSlug } from "@/content/restaurantes";
 import { componerMensajeReserva } from "@/lib/wa";
+
+const slugsValidos = restaurantes.map((r) => r.slug) as [string, ...string[]];
 
 const ReservaSchema = z.object({
   nombre: z.string().min(2, "Dinos tu nombre para guardarte la mesa."),
   telefono: z
     .string()
     .regex(/^[+\d][\d\s]{8,15}$/, "Ese teléfono no parece completo: revísalo."),
-  local: z.enum(["centro", "lavadero"]),
+  local: z.enum(slugsValidos),
   personas: z.coerce.number().int().min(1).max(30),
   fecha: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Elige el día de la reserva."),
   hora: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, "Elige una hora."),
@@ -80,7 +82,7 @@ export async function enviarReserva(
 
   const d = datos.data;
   const restaurante = restaurantePorSlug(d.local)!;
-  const nombreLocal = d.local === "centro" ? "Getafe Centro" : "Lavadero";
+  const nombreLocal = restaurante.nombreCorto;
 
   // Degradación elegante (§12.3): sin RESEND_API_KEY no se enseña un error
   // de infraestructura — se devuelve el mensaje compuesto para WhatsApp/tel.

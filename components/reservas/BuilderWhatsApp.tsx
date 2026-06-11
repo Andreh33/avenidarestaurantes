@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { restaurantes } from "@/content/restaurantes";
 import { componerMensajeReserva, urlWhatsApp } from "@/lib/wa";
@@ -24,20 +24,19 @@ export function BuilderWhatsApp() {
   const [copiado, setCopiado] = useState(false);
 
   const restaurante = restaurantes.find((r) => r.slug === local)!;
-  const nombreLocal = local === "centro" ? "Getafe Centro" : "Lavadero";
+  const nombreLocal = restaurante.nombreCorto;
+  // Si el local aún no tiene teléfono publicado (P4), se llama al Centro
+  const telContacto = restaurante.telefonos[0] ?? restaurantes[0].telefonos[0];
   const completo = fecha && hora && nombre.trim().length >= 2;
 
-  const mensaje = useMemo(
-    () =>
-      componerMensajeReserva({
-        local: nombreLocal,
-        personas,
-        fecha: fecha || "—",
-        hora: hora || "—",
-        nombre: nombre.trim() || "…",
-      }),
-    [nombreLocal, personas, fecha, hora, nombre],
-  );
+  // Sin useMemo: el React Compiler memoiza solo
+  const mensaje = componerMensajeReserva({
+    local: nombreLocal,
+    personas,
+    fecha: fecha || "—",
+    hora: hora || "—",
+    nombre: nombre.trim() || "…",
+  });
 
   const cambiarPersonas = (delta: 1 | -1) => {
     setDireccionStep(delta);
@@ -59,7 +58,7 @@ export function BuilderWhatsApp() {
         <legend className="mb-2 font-sans text-sm font-semibold text-tinta">
           ¿En qué local?
         </legend>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-2 gap-3">
           {restaurantes.map((r) => (
             <button
               key={r.slug}
@@ -67,13 +66,13 @@ export function BuilderWhatsApp() {
               onClick={() => setLocal(r.slug)}
               aria-pressed={local === r.slug}
               className={cn(
-                "min-h-11 flex-1 rounded-[10px] border px-4 py-2.5 font-sans text-sm font-semibold transition-colors duration-200",
+                "min-h-11 rounded-[10px] border px-4 py-2.5 font-sans text-sm font-semibold transition-colors duration-200",
                 local === r.slug
                   ? "border-cobalto bg-cobalto text-tiza"
                   : "border-tinta/20 text-tinta hover:border-tinta/50",
               )}
             >
-              {r.slug === "centro" ? "Getafe Centro" : "Lavadero"}
+              {r.nombreCorto}
             </button>
           ))}
         </div>
@@ -185,11 +184,12 @@ export function BuilderWhatsApp() {
               {copiado ? "¡Copiado!" : "Copiar mensaje"}
             </button>
             <a
-              href={`tel:${restaurante.telefonos[0].numero}`}
+              href={`tel:${telContacto.numero}`}
               className="inline-flex min-h-11 items-center gap-2 rounded-[10px] border border-tinta/25 px-6 py-3 font-sans text-sm font-semibold text-tinta transition-colors hover:border-tinta/60"
             >
               <IconoTelefono />
-              Llamar al {restaurante.telefonos[0].visible}
+              Llamar al {telContacto.visible}
+              {restaurante.telefonos.length === 0 && " (Getafe Centro)"}
             </a>
           </div>
         </div>

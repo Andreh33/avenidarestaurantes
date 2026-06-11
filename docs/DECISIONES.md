@@ -141,3 +141,23 @@ Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: deci
 **Decision:** mientras P8 no se resuelva, el acto muestra solo los enlaces discretos a Google Maps por local; las cards-posavasos (rotacion ±1.5°, se enderezan al hover) estan programadas y aparecen solas al marcar aprobadoPorCliente: true.
 
 **Porque:** Ley 1 y §2.6 — publicar testimonios sin permiso expreso esta prohibido; el enlace a Maps es real y util.
+
+---
+
+## D-013 · Fotos provisionales desde las fichas de Google de los propios locales
+
+**Fecha:** 11/06/2026 · **Bloque:** B10 (extra pedido por Andreh)
+
+**Decision:** ante la peticion de Andreh de rellenar la web con fotos, se usan exclusivamente fotos de las fichas de Google Maps DE LOS PROPIOS locales (fachadas y platos), pasadas por el pipeline (sharp, WebP, EXIF fuera, LQIP, alt reales) y marcadas como provisionales en el manifest. Descartes en curaduria: plato a medio comer con marca de fecha, un duplicado y una foto dudosa (posible otro negocio). P7 sigue vivo: se sustituyen por los originales del cliente en cuanto lleguen, y se pide su OK sobre estas en el siguiente contacto.
+
+**Porque:** Ley 4 prohibe stock y fotos de OTROS restaurantes; las fotos del propio negocio en su ficha publica son material real del sujeto. La titularidad exacta se confirma con el cliente — por eso son provisionales y estan registradas.
+
+---
+
+## D-014 · Cuatro locales confirmados por Andreh
+
+**Fecha:** 11/06/2026 · **Bloque:** B10
+
+**Decision:** Andreh confirma 4 locales: Toledo 15, Hospital de San Jose 67, C. Madrid 89 y Almansa 4 (Getafe). Los dos nuevos entran en content con SOLO la direccion (nombre de trabajo por calle, sin telefono, horario null, sin geo el de Almansa — la direccion no geocodifica en Getafe, confirmar). El esquema se flexibilizo (placeId y geo opcionales, telefonos puede ser vacio, horarios nullable) y toda la UI degrada con honestidad («Horario por confirmar», «Telefono en breve»). En C. Madrid 89 Google lista «Restaurante Jamonivino»: preguntado a Andreh si es del grupo antes de usar su nombre o datos.
+
+**Porque:** Ley 1 — la palabra del arquitecto-revisor es dato del cliente; lo que el no dio, no se inventa.

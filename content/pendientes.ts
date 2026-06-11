@@ -9,8 +9,8 @@ export const pendientes: Pendiente[] = [
   {
     id: "P1",
     pregunta:
-      "¿Cuántos locales son hoy y cuáles? ¿Avenida 47 es vuestro? Nombre comercial exacto de cada uno.",
-    bloquea: ["content/restaurantes.ts (nombres)", "lanzamiento"],
+      "Confirmados 4 locales por Andreh (11/06/2026): Toledo 15, Hospital de San José 67, C. Madrid 89 y Almansa 4. FALTA: nombre comercial exacto de cada uno, y de los dos nuevos: teléfono, horario y dirección verificada (Almansa 4 no geocodifica en Getafe). ¿El «Jamonivino» de C. Madrid 89 es vuestro?",
+    bloquea: ["content/restaurantes.ts (nombres y datos nuevos)", "lanzamiento"],
     resuelto: false,
   },
   {

@@ -9,6 +9,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { EstadoVivo } from "@/components/ui/EstadoVivo";
 import { Reloj } from "@/components/ui/Reloj";
 import { PlacaAzulejo } from "@/components/placas/PlacaAzulejo";
+import { Foto } from "@/components/ui/Foto";
 import { IconoReloj } from "@/components/ui/iconos";
 
 if (typeof window !== "undefined") {
@@ -174,33 +175,49 @@ export function Acto1Hero() {
           </div>
         </div>
 
-        {/* Collage de placas con profundidad (fotos reales cuando llegue B2) */}
+        {/* Collage real: fachadas de los locales + placa, con profundidad (§9) */}
         <div
           data-hero-sec
-          aria-hidden="true"
-          className="relative h-[300px] opacity-0 select-none sm:h-[360px] lg:h-[480px]"
+          className="relative h-[320px] opacity-0 select-none sm:h-[380px] lg:h-[500px]"
         >
-          <span className="font-display pointer-events-none absolute -top-6 right-0 text-[16rem] leading-none font-extrabold text-cobalto/6 lg:text-[22rem]">
+          <span
+            aria-hidden="true"
+            className="font-display pointer-events-none absolute -top-6 right-0 text-[16rem] leading-none font-extrabold text-cobalto/6 lg:text-[22rem]"
+          >
             A
           </span>
-          <div data-capa="1" className="absolute top-[8%] left-[2%] w-[68%] max-w-[340px]">
+          <div data-capa="1" className="absolute top-[2%] right-0 w-[88%]">
             <div data-profundidad="1">
+              <Foto
+                id="centro-fachada-01"
+                priority
+                sizes="(min-width: 1024px) 38vw, 88vw"
+                className="-rotate-2 rounded-(--radius-card) shadow-card"
+              />
+            </div>
+          </div>
+          <div
+            data-capa="2"
+            className="absolute bottom-[14%] left-0 w-[46%] max-w-[250px] lg:bottom-[8%]"
+          >
+            <div data-profundidad="1.7">
               <PlacaAzulejo
                 eyebrow="RESTAURANTES"
                 texto="AVENIDA"
                 pie="GETAFE"
-                className="-rotate-3 shadow-placa"
+                className="rotate-2 shadow-placa"
               />
             </div>
           </div>
-          <div data-capa="2" className="absolute right-0 bottom-[4%] w-[58%] max-w-[300px]">
-            <div data-profundidad="1.7">
-              <PlacaAzulejo
-                eyebrow="AVENIDA"
-                texto="LAVADERO"
-                pie="GETAFE"
-                matiz="aceituna"
-                className="rotate-2 shadow-placa"
+          <div
+            data-capa="2"
+            className="absolute -bottom-[2%] right-[6%] w-[52%] lg:bottom-[-6%]"
+          >
+            <div data-profundidad="1.35">
+              <Foto
+                id="lavadero-fachada-01"
+                sizes="(min-width: 1024px) 22vw, 52vw"
+                className="rotate-1 rounded-(--radius-card) shadow-flotante"
               />
             </div>
           </div>

@@ -236,6 +236,11 @@ body {
   }
 }
 
+/* Curva cálida consistente para homogeneizar fotos dispares (§5.4) */
+.foto-curva {
+  filter: saturate(1.06) contrast(1.04) sepia(0.05);
+}
+
 /* ============ PROSA LEGAL ============ */
 .prose-avenida h2 {
   font-family: var(--font-display), system-ui, sans-serif;

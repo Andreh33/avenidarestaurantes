@@ -19,23 +19,23 @@ export function Footer() {
   return (
     <footer className="bg-noche text-tiza">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
-        <div className="grid gap-10 md:grid-cols-3">
-          {/* Marca */}
-          <div>
-            <PlacaMini className="text-tiza" />
-            <p className="mt-4 max-w-xs font-serif text-xl italic text-tiza/85">
-              {grupo.claim}
-            </p>
-            <p className="mt-3 font-sans text-sm text-tiza/60">
-              La comida que siempre gana: la casera.
-            </p>
-          </div>
+        {/* Marca */}
+        <div className="mb-12">
+          <PlacaMini className="text-tiza" />
+          <p className="mt-4 max-w-xs font-serif text-xl italic text-tiza/85">
+            {grupo.claim}
+          </p>
+          <p className="mt-3 font-sans text-sm text-tiza/60">
+            La comida que siempre gana: la casera. Cuatro portales en Getafe.
+          </p>
+        </div>
 
-          {/* NAP por local */}
+        {/* NAP por local */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {restaurantes.map((r) => (
             <div key={r.slug} className="font-sans text-sm">
               <h3 className="font-display text-lg font-bold tracking-tight">
-                {r.nombre}
+                {r.nombreCorto}
               </h3>
               <address className="mt-3 space-y-2 not-italic text-tiza/80">
                 <p>
@@ -43,6 +43,9 @@ export function Footer() {
                   <br />
                   {r.direccion.cp} {r.direccion.ciudad}
                 </p>
+                {r.telefonos.length === 0 && (
+                  <p className="text-xs text-tiza/50">Teléfono en breve</p>
+                )}
                 {r.telefonos.map((t) => (
                   <p key={t.numero}>
                     <a
