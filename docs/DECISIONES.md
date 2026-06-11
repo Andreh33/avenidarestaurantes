@@ -97,3 +97,15 @@ Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: deci
 **Alternativas:** esperar a B2 para el hero; usar texturas decorativas.
 
 **Porque:** Ley 4 — el vacio bien diseñado es premium; las placas SON la identidad y el hero queda completo y digno desde hoy.
+
+---
+
+## D-009 · Acto III en movil: pila sticky en vez de scroll-snap
+
+**Fecha:** 11/06/2026 · **Bloque:** B7
+
+**Decision:** la variante movil del Paseo apila las fachadas con position:sticky (cada card se queda fijada y la siguiente la cubre al scrollear), en vez de scroll-snap por puntos.
+
+**Alternativas:** CSS scroll-snap (literal de §9); carrusel tactil.
+
+**Porque:** scroll-snap pelea con Lenis (scroll suave global §16.6) y produce tirones; la pila sticky da la misma narrativa de «portal a portal» con scroll 100 % nativo y cero secuestro (§16.7). El arco de luz en movil queda para la integracion global de B12.

@@ -67,9 +67,20 @@
  * Viven fuera de @theme porque se animan en runtime.
  */
 :root {
+  /* Estado vivo del arco (lo interpola GSAP) */
   --sky: #f7f3eb;
   --light: #fdfbf7;
   --glow: rgba(255, 196, 110, 0);
+
+  /* Waypoints del día — los keyframes del arco viven aquí, no en componentes */
+  --sky-manana: #f7f3eb;
+  --light-manana: #fdfbf7;
+  --sky-mediodia: #f6efdf;
+  --light-mediodia: #fefcf5;
+  --sky-tarde: #f2e0bd;
+  --light-tarde: #fcf0d6;
+  --sky-noche: #0b1b33;
+  --light-noche: #16213a;
 }
 
 /* ============ BASE ============ */
