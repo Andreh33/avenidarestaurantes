@@ -1,0 +1,39 @@
+# DECISIONES — Restaurantes Avenida · «El Paseo»
+
+Registro de decisiones de estudio y de toda `[LIBERTAD]` ejercida. Formato: decisión, alternativas consideradas, porqué (≤ 5 líneas).
+
+---
+
+## D-001 · Sin reduced motion (Ley 2) — decisión de estudio
+
+**Fecha:** 11/06/2026 · **Bloque:** B0 · **Estado:** firme, no se vuelve a cuestionar
+
+**Decisión:** la animación es parte del producto y está siempre activa. En todo el código queda prohibido: media queries `prefers-reduced-motion`, hooks `useReducedMotion`, variantes Tailwind `motion-safe:`/`motion-reduce:` y cualquier rama condicional que degrade o desactive animaciones.
+
+**Alternativas consideradas:** respetar la preferencia del sistema (recomendación de la skill y de WCAG).
+
+**Porqué:** decisión de dirección registrada en el prompt maestro (§3, Ley 2): el arco de luz y el lenguaje cinemático del Paseo SON el producto que se vende. Prevalece sobre la skill, las librerías y cualquier guía externa. La accesibilidad se cuida en todo lo demás (Ley 10).
+
+---
+
+## D-002 · Rama de trabajo desde repo vacío
+
+**Fecha:** 11/06/2026 · **Bloque:** B0
+
+**Decisión:** el repo remoto estaba vacío; se inicializó local con rama `main` sin commits y todo B0 se construye en `b00-arranque`. `main` nacerá con el primer merge aprobado por Andreh.
+
+**Alternativas:** commit inicial vacío en `main` y ramificar después.
+
+**Porqué:** cumple la Ley 9 («nunca trabajo directo sobre main») de la forma más limpia: `main` solo contendrá historia aprobada.
+
+---
+
+## D-003 · Placa «Próximamente» de B0 sin craquelado ni Flip
+
+**Fecha:** 11/06/2026 · **Bloque:** B0
+
+**Decisión:** la placa del primer deploy es una versión estática y sobria del sistema de placas (esmalte + cenefa cobalto + grain sutil), con una única animación CSS de entrada. El sistema completo (craquelado, brillo especular animado, Flip, variantes por local) se diseña en B1/B5.
+
+**Alternativas:** adelantar el componente `PlacaAzulejo` definitivo.
+
+**Porqué:** B0 es cimientos y CI/CD vivo, no dirección de arte. La placa definitiva merece el gate visual de B1 con la skill recargada.

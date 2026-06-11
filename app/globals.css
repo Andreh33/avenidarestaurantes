@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/*
+ * Tokens del sistema — paleta §5.1 del prompt maestro.
+ * Cero hex sueltos en componentes: todo color sale de aquí.
+ * Versión B0: lo mínimo para la placa «Próximamente». El sistema completo
+ * (arco de luz --sky/--light/--glow, escala fluida) se construye en B1.
+ */
+@theme {
+  --color-hueso: #f7f3eb;
+  --color-cobalto: #1e40af;
+  --color-vermut: #c2410c;
+  --color-aceituna: #4d5b3f;
+  --color-noche: #0b1b33;
+  --color-tinta: #16213a;
+  --color-tiza: #fdfbf7;
+
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-instrument-sans);
+  --font-serif: var(--font-instrument-serif);
+}
+
+::selection {
+  background: var(--color-vermut);
+  color: var(--color-tiza);
+}
+
+/* Anillo de foco esmalte cobalto (Ley 10) — se refina en B1 con el doble anillo */
+:focus-visible {
+  outline: 3px solid var(--color-cobalto);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+body {
+  background: var(--color-hueso);
+  color: var(--color-tinta);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Entrada de la placa «Próximamente» — solo transform/opacity (Ley 7) */
+@keyframes placa-entra {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes texto-entra {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Brillo especular que barre la placa una vez, como esmalte al sol */
+@keyframes brillo-esmalte {
+  from {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(260%) skewX(-18deg);
+  }
+}
+
+.anim-placa {
+  animation: placa-entra 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-texto {
+  animation: texto-entra 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-brillo {
+  animation: brillo-esmalte 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.9s both;
+}
